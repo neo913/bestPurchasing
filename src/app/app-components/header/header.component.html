@@ -1,1 +1,27 @@
-<p>header works!</p>
+<mat-toolbar color="primary" role="navigation bar">
+  <mat-toolbar-row>
+    <div class="logo">
+      <img src="assets/bestPurchasing-logo.png" title="logo">
+    </div>
+    <button mat-flat-button color="primary">Shop</button>
+    <button mat-flat-button color="primary">FAQ</button>
+    <button mat-flat-button color="primary">Board</button>
+    <button mat-flat-button color="primary">Contact</button>
+    <span class="flex"></span>
+    
+    <div *ngIf="!signedIn">
+      <button mat-flat-button color="accent">Sign In</button>
+      <button mat-flat-button color="warn">Sign up</button>
+    </div>
+    <div *ngIf="signedIn">
+      <mat-menu #accMenu="matMenu">
+        <button mat-menu-item>My Account</button>
+        <button mat-menu-item>My Orders</button>
+        <button mat-menu-item>Sign Out</button>
+      </mat-menu>
+      <button mat-icon-button [matMenuTriggerFor]="accMenu">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </div>  
+  </mat-toolbar-row>
+</mat-toolbar>
