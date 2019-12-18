@@ -12,6 +12,8 @@ import { SignInComponent } from './app-components/sign-in/sign-in.component';
 import { SignOutComponent } from './app-components/sign-out/sign-out.component';
 import { AdminComponent } from './app-components/admin/admin.component';
 import { ErrorsComponent } from './app-components/errors/errors.component';
+import { HeaderComponent } from './app-components/header/header.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,11 +26,13 @@ import { ErrorsComponent } from './app-components/errors/errors.component';
     SignInComponent,
     SignOutComponent,
     AdminComponent,
-    ErrorsComponent
+    ErrorsComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
