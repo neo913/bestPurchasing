@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" role="navigation bar">
-  <mat-toolbar-row>
+  <mat-toolbar-row class="normalView">
     <div class="logo">
       <img src="assets/bestPurchasing-logo.png" title="logo">
     </div>
@@ -8,11 +8,12 @@
     <button mat-flat-button color="primary" routerLink="/Board">Board</button>
     <button mat-flat-button color="primary" routerLink="/Contact">Contact</button>
     <span class="flex"></span>
-    
-    <div *ngIf="!signedIn">
+
+    <div *ngIf="!signedIn" class="signMenus">
       <button mat-flat-button color="basic">Sign In</button>
       <button mat-flat-button color="warn">Sign up</button>
     </div>
+
     <div *ngIf="signedIn">
       <mat-menu #accMenu="matMenu">
         <button mat-menu-item>My Account</button>
@@ -22,6 +23,36 @@
       <button mat-icon-button [matMenuTriggerFor]="accMenu">
         <mat-icon>account_circle</mat-icon>
       </button>
-    </div>  
+    </div>
+  </mat-toolbar-row> 
+  <!-- /.normalView -->
+  
+  <mat-toolbar-row class="mobileView">
+    <div class="logo">
+      <button mat-button [matMenuTriggerFor]="appMenu">
+        <img src="assets/bestPurchasing-logo.png" title="logo">
+      </button>
+    </div>
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item routerLink="/Shop">Shop</button>
+      <button mat-menu-item routerLink="/Faq">FAQ</button>
+      <button mat-menu-item routerLink="/Board">Board</button>
+      <button mat-menu-item routerLink="/Contact">Contact</button>
+      <div *ngIf="!signedIn">
+        <button mat-menu-item>Sign In</button>
+        <button mat-menu-item>Sign Up</button>
+      </div>
+      <div *ngIf="signedIn">
+        <button mat-menu-item [matMenuTriggerFor]="accMenu">Account</button>
+        <mat-menu #accMenu="matMenu">
+          <button mat-menu-item>My Account</button>
+          <button mat-menu-item>My Orders</button>
+          <button mat-menu-item>Sign Out</button>
+        </mat-menu>
+      </div>
+      
+    </mat-menu>
   </mat-toolbar-row>
+   <!-- /.mobileView -->
+
 </mat-toolbar>

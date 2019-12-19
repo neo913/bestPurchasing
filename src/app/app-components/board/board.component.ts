@@ -27,7 +27,6 @@ const NAMES: string[] = [
 })
 export class BoardComponent implements OnInit {
 
-  screenWidth = window.screen.width;
   displayedColumns: string[] = ['id', 'title', 'writer', 'date'];
   dataSource: MatTableDataSource<UserData>;
 

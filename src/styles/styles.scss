@@ -25,15 +25,9 @@ div.container {
   }
 }
 
-// span.ellipsis {
-//   white-space: nowrap;
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-//   max-width: 100px;
-// }
-
+.text-center { text-align: center; }
+.text-right { text-align: right; }
 span.flex { flex: 1 1 auto; } // fill the space
-
 
 @media screen and (min-width: 900px) {
   div.container {

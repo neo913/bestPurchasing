@@ -8,8 +8,13 @@ mat-expansion-panel {
       margin-top: 8px;
     }
   }
+
   mat-panel-description {
     margin-top: 10px;
+    span.panel-category {
+      margin-right: 0px;
+      margin-left: auto;
+    }
   }
   pre {
     overflow: auto;
