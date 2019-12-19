@@ -1,0 +1,17 @@
+@import 'styles';
+
+mat-expansion-panel {
+  margin: 0.5rem 0rem;
+  mat-panel-title {
+    min-height: 30px;
+    span {
+      margin-top: 8px;
+    }
+  }
+  mat-panel-description {
+    margin-top: 10px;
+  }
+  pre {
+    overflow: auto;
+  }
+}

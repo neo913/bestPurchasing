@@ -1,1 +1,19 @@
-<p>faq works!</p>
+<div class="container">
+  <div class="inner-container lg">
+
+    <h1>Most Asked Questions</h1>
+
+    <mat-expansion-panel *ngFor="let item of faqList" class="faqList">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>Q</mat-icon><span>{{item.question}}</span>
+        </mat-panel-title>
+        <mat-panel-description>
+          {{item.category}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p><mat-icon>A</mat-icon>{{item.answer}}</p>
+    </mat-expansion-panel>
+
+  </div> <!-- /.inner-container -->
+</div> <!-- /.container -->

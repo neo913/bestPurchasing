@@ -1,0 +1,16 @@
+@import 'styles';
+
+mat-toolbar {
+  background-color: $gray-medium;
+  div.logo {
+    img {
+      max-width: 160px;
+      margin-right: 20px;
+    }
+  }
+  button {
+    margin: 0.4rem;
+    min-width: 80px;
+  }
+  
+}
