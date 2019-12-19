@@ -2,12 +2,21 @@
 @import './mixin.scss';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: $gray-light; font-size: 12px; color: $font-gen;}
+body { 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+  background-color: $gray-light; 
+  font-size: 12px; 
+  color: $font-gen;
+}
 
 div.container {
   background-color: $white;
   margin: 20px 20px;
-  min-height: 85%;
+  width: calc(100% - 40px);
+  min-height: calc(100vh - 105px);
+  height: auto;
+  overflow: auto;
   div.inner-container {
     margin-top: 20px;
     &.lg { width: 80%; margin: auto; padding: 20px; }
@@ -16,4 +25,17 @@ div.container {
   }
 }
 
+.text-center { text-align: center; }
+.text-right { text-align: right; }
 span.flex { flex: 1 1 auto; } // fill the space
+
+@media screen and (min-width: 900px) {
+  div.container {
+    div.inner-container {
+      &.lg, *.md, &.sm {
+        // width: 100%;
+      }
+    }
+  }
+}
+

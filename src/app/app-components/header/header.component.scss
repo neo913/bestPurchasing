@@ -1,16 +1,27 @@
 @import 'styles';
 
 mat-toolbar {
-  background-color: $gray-medium;
   div.logo {
     img {
       max-width: 160px;
       margin-right: 20px;
     }
   }
-  button {
+  mat-toolbar-row.normalView { display: flex; }
+  mat-toolbar-row.mobileView { display: none; }
+  .mobileView .logo, .mobileView .logo button {
+    height: auto;
+    max-height: 32px;
+    img { margin-top: -65px; }
+  }
+  mat-toolbar-row > button, .signMenus > button {
     margin: 0.4rem;
     min-width: 80px;
   }
+}
+
+@media screen and (max-width: $screen-min) {
+  mat-toolbar-row.normalView { display: none !important; }
+  mat-toolbar-row.mobileView { display: flex !important; }
   
 }
