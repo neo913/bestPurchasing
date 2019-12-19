@@ -27,6 +27,7 @@ const NAMES: string[] = [
 })
 export class BoardComponent implements OnInit {
 
+  screenWidth = window.screen.width;
   displayedColumns: string[] = ['id', 'title', 'writer', 'date'];
   dataSource: MatTableDataSource<UserData>;
 
@@ -64,13 +65,8 @@ function createNewUser(id: number): UserData {
 
   return {
     id: id.toString(),
-    title: Math.round(Math.random() * 100).toString(),
+    title: "Testinggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",// Math.round(Math.random() * 100).toString(),
     writer: writer,
     date: new Date().toString()
   };
 }
-
-
-/**  Copyright 2019 Google LLC. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at http://angular.io/license */
