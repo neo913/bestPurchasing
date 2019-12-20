@@ -10,8 +10,8 @@
     <span class="flex"></span>
 
     <div *ngIf="!signedIn" class="signMenus">
-      <button mat-flat-button color="basic">Sign In</button>
-      <button mat-flat-button color="warn">Sign up</button>
+      <button mat-flat-button color="basic" (click)="openSignInDialog()">Sign In</button>
+      <button mat-flat-button color="warn" (click)="openSignUpDialog()">Sign up</button>
     </div>
 
     <div *ngIf="signedIn">
@@ -39,8 +39,8 @@
       <button mat-menu-item routerLink="/Board">Board</button>
       <button mat-menu-item routerLink="/Contact">Contact</button>
       <div *ngIf="!signedIn">
-        <button mat-menu-item>Sign In</button>
-        <button mat-menu-item>Sign Up</button>
+        <button mat-menu-item (click)="openSignInDialog()">Sign In</button>
+        <button mat-menu-item (click)="openSignUpDialog()">Sign Up</button>
       </div>
       <div *ngIf="signedIn">
         <button mat-menu-item [matMenuTriggerFor]="accMenu">Account</button>

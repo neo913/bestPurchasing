@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
+export interface DialogData {
+  id: string;
+  password: string;
+}
 
 @Component({
   selector: 'app-sign-in',
@@ -7,9 +13,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignInComponent implements OnInit {
 
-  constructor() { }
+  signData: DialogData = { id: '', password: '' };
+  constructor(public dialogRef: MatDialogRef<SignInComponent>) { }
 
   ngOnInit() {
+    this.signData.id = '';
+    this.signData.password = '';
   }
+
+  onNoClick() {
+    this.dialogRef.close();
+  }
+
 
 }

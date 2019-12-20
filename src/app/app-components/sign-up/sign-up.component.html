@@ -1,0 +1,49 @@
+<div mat-dialog-content class="modal-container">
+  <h1>Join Best Purchasing!</h1>
+
+  <div class="accInfo">
+    <h3>Account Information</h3>
+    <mat-form-field class="half">
+      <input matInput [(ngModel)]="userData.username" placeholder="Username">
+    </mat-form-field>
+    <mat-form-field class="half">
+      <input matInput [(ngModel)]="userData.password" placeholder="Password">
+    </mat-form-field>
+  </div>
+
+  <div class="personalInfo">
+    <h3>Personal Information</h3>
+    <mat-form-field class="half">
+      <input matInput [(ngModel)]="userData.fName" placeholder="First Name">
+    </mat-form-field>
+    <mat-form-field class="half">
+      <input matInput [(ngModel)]="userData.lName" placeholder="Last Name">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="userData.address1" placeholder="Address1">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="userData.address2" placeholder="Address2">
+    </mat-form-field>
+
+    <mat-form-field class="one-third">
+      <mat-label>Select a province</mat-label>
+      <mat-select [(value)]="userData.province">
+        <mat-option>Select</mat-option>
+        <mat-option *ngFor="let province of provinceList" value="province.short">{{province.long}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="one-third">
+      <input matInput [(ngModel)]="userData.postal" placeholder="Postal Code">
+    </mat-form-field>
+    <mat-form-field class="one-third">
+      <input matInput [(ngModel)]="userData.phone" placeholder="Phone Number">
+    </mat-form-field>
+  </div>
+
+</div>
+<div mat-dialog-actions class="actionButtons">
+  <span class="flex"></span>
+  <button mat-raised-button [mat-dialog-close]="data" cdkFocusInitial color="warn">Sign up</button>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+</div>

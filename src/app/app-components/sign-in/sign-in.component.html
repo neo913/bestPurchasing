@@ -1,1 +1,14 @@
-<p>sign-in works!</p>
+<div mat-dialog-content class="modal-container">
+  <h1>Welcome to Best Purchasing!</h1>
+  <mat-form-field>
+    <input matInput [(ngModel)]="signData.id" placeholder="ID">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="signData.password" placeholder="Password">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="actionButtons">
+  <span class="flex"></span>
+  <button mat-raised-button [mat-dialog-close]="data" cdkFocusInitial color="warn">Sign in</button>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+</div>
