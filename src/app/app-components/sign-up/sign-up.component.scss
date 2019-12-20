@@ -1,8 +1,11 @@
 @import 'styles';
 
 h1 { text-align: center; }
-input, .mat-select {
+input, mat-select  {
   font-size: 1rem;
+}
+mat-option {
+  font-size: 12px !important;
 }
 
 div.modal-container {
