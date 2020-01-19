@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
 
   openSignUpDialog() {
     const dialogRef = this.dialog.open(SignUpComponent, {
-      width: '40%', height: '70%'
+      width: '40%'
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');

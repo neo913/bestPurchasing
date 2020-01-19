@@ -29,30 +29,36 @@
   <div class="personalInfo">
     <h3>Personal Information</h3>
     <mat-form-field class="half">
-      <input matInput [(ngModel)]="userData.fName" placeholder="First Name">
+      <input matInput [(ngModel)]="userData.fName" [formControl]="fName" placeholder="First Name" required>
+      <mat-error *ngIf="fName.invalid">{{getErrorMessage('required')}}</mat-error>
     </mat-form-field>
     <mat-form-field class="half">
-      <input matInput [(ngModel)]="userData.lName" placeholder="Last Name">
+      <input matInput [(ngModel)]="userData.lName" [formControl]="lName" placeholder="Last Name" required>
+      <mat-error *ngIf="lName.invalid">{{getErrorMessage('required')}}</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput [(ngModel)]="userData.address1" placeholder="Address1">
+      <input matInput [(ngModel)]="userData.address1" [formControl]="address1" placeholder="Address1" required>
+      <mat-error *ngIf="address1.invalid">{{getErrorMessage('required')}}</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput [(ngModel)]="userData.address2" placeholder="Address2">
+      <input matInput [(ngModel)]="userData.address2" placeholder="Address2 - (Optional)">
     </mat-form-field>
 
     <mat-form-field class="one-third">
       <mat-label>Select a province</mat-label>
-      <mat-select [(value)]="userData.province">
+      <mat-select [(value)]="userData.province" [formControl]="province" required>
         <mat-option>Select</mat-option>
-        <mat-option *ngFor="let province of provinceList" value="province.short">{{province.long}}</mat-option>
+        <mat-option *ngFor="let province of provinceList" value="{{province.short}}">{{province.long}}</mat-option>
       </mat-select>
+      <mat-error *ngIf="province.invalid">{{getErrorMessage('required')}}</mat-error>
     </mat-form-field>
     <mat-form-field class="one-third">
-      <input matInput [(ngModel)]="userData.postal" placeholder="Postal Code">
+      <input matInput [(ngModel)]="userData.postal" [formControl]="postal" placeholder="Postal Code" required>
+      <mat-error *ngIf="postal.invalid">{{getErrorMessage('required')}}</mat-error>
     </mat-form-field>
     <mat-form-field class="one-third">
-      <input matInput [(ngModel)]="userData.phone" placeholder="Phone Number">
+      <input matInput [(ngModel)]="userData.phone" [formControl]="phone" placeholder="Phone Number" required>
+      <mat-error *ngIf="phone.invalid">{{getErrorMessage('required')}}</mat-error>
     </mat-form-field>
   </div>
 
