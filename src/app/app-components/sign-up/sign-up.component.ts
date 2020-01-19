@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 export interface UserData {
   username: string;
@@ -18,11 +19,9 @@ export interface UserData {
 })
 export class SignUpComponent implements OnInit {
 
-  userData: UserData = {
-    username: '', password: '',
-    fName: '', lName: '', 
-    address1: '', address2: '', province: '', postal: '', phone: ''
-  }
+  userData: UserData;
+  registerForm: FormGroup;
+  hide = true;  // to hide/show password  
 
   provinceList = [
     { short: "AB", long: "AB - Alberta" },
@@ -40,9 +39,46 @@ export class SignUpComponent implements OnInit {
     { short: "YT", long: "YT - Yukon" }
   ]
   
+  // email = new FormControl('', [Validators.required, Validators.email]); // This doesn't work properly
+  email = new FormControl('', [Validators.required, Validators.pattern(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)]);
+  password = new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]);
+
   constructor() { }
 
   ngOnInit() {
+    this.userData = {
+      username: '', 
+      password: '',
+      fName: '', 
+      lName: '', 
+      address1: '', 
+      address2: '', 
+      province: '', 
+      postal: '', 
+      phone: ''
+    }
   }
+
+  emailError() {
+    return this.email.hasError('required') ? 'You must enter an email' : this.email.hasError('pattern') ? 'Not a valid email': '';
+  }
+  passwordError() {
+    return this.password.hasError('required') ? 'You must enter password' : this.password.hasError('pattern') ? 'Password must contains more than 8 numbers, letters, and special characters' : '';
+  }
+
+  getErrorMessage(name: String) {
+    switch(name) {
+      case 'email'    : return this.email.hasError('required') ? 'You must enter a value'
+                              : this.email.hasError('pattern') ? 'Not a valid email'
+                              : '';
+      case 'password' : return this.password.hasError('required') ? 'You must enter password'
+                              : this.password.hasError('pattern') ? 'Password must contains more than 8 numbers, letters, and special characters'
+                              : '';
+      default         : return '';
+    }
+    
+  }
+
+  
 
 }

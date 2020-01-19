@@ -1,15 +1,30 @@
 <div mat-dialog-content class="modal-container">
+  
   <h1>Join Best Purchasing!</h1>
+  
+  
+  <h3>Account Information</h3>
+  
+  <ng-form #signUpForm="ngForm" (ngSubmit)="onSubmit(signUpForm)">
 
-  <div class="accInfo">
-    <h3>Account Information</h3>
-    <mat-form-field class="half">
-      <input matInput [(ngModel)]="userData.username" placeholder="Username">
-    </mat-form-field>
-    <mat-form-field class="half">
-      <input matInput [(ngModel)]="userData.password" placeholder="Password">
-    </mat-form-field>
-  </div>
+    <div class="accInfo">
+
+      <mat-form-field class="half">
+        <input matInput name="username" [(ngModel)]="userData.username" [formControl]="email" placeholder="Username - Enter your email" required>
+      <mat-error *ngIf="email.invalid">{{getErrorMessage('email')}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="half">
+        <input matInput name="password" [(ngModel)]="userData.password" [formControl]="password" placeholder="Password - Enter your password" required [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="password.invalid">{{getErrorMessage('password')}}</mat-error>
+      </mat-form-field>
+    </div>
+
+  </ng-form>
+
 
   <div class="personalInfo">
     <h3>Personal Information</h3>
