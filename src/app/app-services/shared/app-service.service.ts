@@ -1,9 +1,24 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AppServiceService {
+export class AppService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  getApi() {
+    return this.http.get('http://localhost:8080/getAllUsers');
+  }
+
+  postAPI() {
+
+  }
+
+  putAPI() {
+
+  }
+
+
 }

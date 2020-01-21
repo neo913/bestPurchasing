@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { AppService } from '../../app-services/shared/app-service.service';
 
 export interface UserData {
   username: string;
@@ -50,7 +51,7 @@ export class SignUpComponent implements OnInit {
   phone = new FormControl('', [Validators.required]);
 
 
-  constructor() { }
+  constructor(private appService: AppService) { }
 
   ngOnInit() {
     this.userData = {
@@ -64,6 +65,9 @@ export class SignUpComponent implements OnInit {
       postal: '', 
       phone: ''
     }
+    this.appService.getApi().subscribe((res) => {
+      console.log(res);
+    });
   }
 
   getErrorMessage(name: String) {
