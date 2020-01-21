@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 export interface UserData {
-  username: string;
+  uName: string;
   password: string;
   fName:    string;
   lName:    string;
@@ -54,7 +54,7 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit() {
     this.userData = {
-      username: '', 
+      uName: '', 
       password: '',
       fName: '', 
       lName: '', 

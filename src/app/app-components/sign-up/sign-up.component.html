@@ -10,7 +10,7 @@
     <div class="accInfo">
 
       <mat-form-field class="half">
-        <input matInput name="username" [(ngModel)]="userData.username" [formControl]="email" placeholder="Username - Enter your email" required>
+        <input matInput name="username" [(ngModel)]="userData.uName" [formControl]="email" placeholder="Username - Enter your email" required>
       <mat-error *ngIf="email.invalid">{{getErrorMessage('email')}}</mat-error>
       </mat-form-field>
 

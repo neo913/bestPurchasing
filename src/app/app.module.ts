@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpParams } from '@angular/common/http';
 
 /* Module */
 import { MaterialModule } from './material.module';
@@ -52,7 +52,8 @@ import { AppService } from './app-services/shared/app-service.service';
     ReactiveFormsModule
   ],
   providers: [
-    AppService
+    AppService,
+    HttpParams
   ],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,7 @@
-export let backendUrl = "localhost:8080"; // Set local as default
+export let backendUrl = "http://localhost:8080"; // Set local as default
 
 export function setEnvironment() {
-  this.backendUrl = "localhost:8080";
+  this.backendUrl = "http://localhost:8080";
 }
 
 export const API_PATH = [
