@@ -1,0 +1,24 @@
+@import 'styles';
+
+h1 { text-align: center; }
+input, mat-select  {
+  font-size: 1rem;
+}
+mat-option {
+  font-size: 12px !important;
+}
+
+div.modal-container {
+  mat-form-field {
+    width: calc(100% - 1rem);
+    margin: 0rem 0.5rem;
+    &.half {
+      width: calc(50% - 1rem);
+    }
+    &.one-third {
+      width: calc(33% - 1rem);
+    }
+  }
+
+  
+}

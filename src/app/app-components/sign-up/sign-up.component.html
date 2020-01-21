@@ -1,0 +1,70 @@
+<div mat-dialog-content class="modal-container">
+  
+  <h1>Join Best Purchasing!</h1>
+  
+  
+  <h3>Account Information</h3>
+  
+  <ng-form #signUpForm="ngForm" (ngSubmit)="onSubmit(signUpForm)">
+
+    <div class="accInfo">
+
+      <mat-form-field class="half">
+        <input matInput name="username" [(ngModel)]="userData.uName" [formControl]="email" placeholder="Username - Enter your email" required>
+      <mat-error *ngIf="email.invalid">{{getErrorMessage('email')}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="half">
+        <input matInput name="password" [(ngModel)]="userData.password" [formControl]="password" placeholder="Password - Enter your password" required [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="password.invalid">{{getErrorMessage('password')}}</mat-error>
+      </mat-form-field>
+    </div>
+
+  </ng-form>
+
+
+  <div class="personalInfo">
+    <h3>Personal Information</h3>
+    <mat-form-field class="half">
+      <input matInput [(ngModel)]="userData.fName" [formControl]="fName" placeholder="First Name" required>
+      <mat-error *ngIf="fName.invalid">{{getErrorMessage('required')}}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="half">
+      <input matInput [(ngModel)]="userData.lName" [formControl]="lName" placeholder="Last Name" required>
+      <mat-error *ngIf="lName.invalid">{{getErrorMessage('required')}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="userData.address1" [formControl]="address1" placeholder="Address1" required>
+      <mat-error *ngIf="address1.invalid">{{getErrorMessage('required')}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="userData.address2" placeholder="Address2 - (Optional)">
+    </mat-form-field>
+
+    <mat-form-field class="one-third">
+      <mat-label>Select a province</mat-label>
+      <mat-select [(value)]="userData.province" [formControl]="province" required>
+        <mat-option>Select</mat-option>
+        <mat-option *ngFor="let province of provinceList" value="{{province.short}}">{{province.long}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="province.invalid">{{getErrorMessage('required')}}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="one-third">
+      <input matInput [(ngModel)]="userData.postal" [formControl]="postal" placeholder="Postal Code" required>
+      <mat-error *ngIf="postal.invalid">{{getErrorMessage('required')}}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="one-third">
+      <input matInput [(ngModel)]="userData.phone" [formControl]="phone" placeholder="Phone Number" required>
+      <mat-error *ngIf="phone.invalid">{{getErrorMessage('required')}}</mat-error>
+    </mat-form-field>
+  </div>
+
+</div>
+<div mat-dialog-actions class="actionButtons">
+  <span class="flex"></span>
+  <button mat-raised-button [mat-dialog-close]="userData" cdkFocusInitial color="warn">Sign up</button>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+</div>

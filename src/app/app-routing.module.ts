@@ -9,6 +9,7 @@ import { SignInComponent } from './app-components/sign-in/sign-in.component';
 import { SignOutComponent } from './app-components/sign-out/sign-out.component';
 import { AdminComponent } from './app-components/admin/admin.component';
 import { ErrorsComponent } from './app-components/errors/errors.component';
+import { SignUpComponent } from './app-components/sign-up/sign-up.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'Contact',                component: ContactComponent },
   { path: 'SignIn',                 component: SignInComponent  },
   { path: 'SignOut',                component: SignOutComponent },
+  { path: 'SignUp',                 component: SignUpComponent  },
   { path: 'Admin',                  component: AdminComponent   },
   { path: 'Errors',                 component: ErrorsComponent  },
   { path: '**',       redirectTo: 'Errors'                      }
