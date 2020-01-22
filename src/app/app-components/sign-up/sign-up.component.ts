@@ -21,22 +21,28 @@ export class SignUpComponent implements OnInit {
 
   userData: UserData;
   registerForm: FormGroup;
-  hide = true;  // to hide/show password  
+  hide = true;  // to hide/show password
+
+  phoneMask = {
+    guide: true,
+    showMask: true,
+    mask: [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
+  };
 
   provinceList = [
-    { short: "AB", long: "AB - Alberta" },
-    { short: "BC", long: "BC - British Columbia" },
-    { short: "MB", long: "MB - Manitoba" },
-    { short: "NB", long: "NB - New Brunswick" },
-    { short: "NL", long: "NL - Newfoundland and Labrador" },
-    { short: "NS", long: "NS - Nova Scotia" },
-    { short: "ON", long: "ON - Ontario" },
-    { short: "PE", long: "PE - Prince Edward Island" },
-    { short: "QC", long: "QC - Quebec" },
-    { short: "SK", long: "SK - Saskatchewan" },
-    { short: "NT", long: "NT - Northwest Territories" },
-    { short: "NU", long: "NU - Nunavut" },
-    { short: "YT", long: "YT - Yukon" }
+    { short: "AB", long: "Alberta" },
+    { short: "BC", long: "British Columbia" },
+    { short: "MB", long: "Manitoba" },
+    { short: "NB", long: "New Brunswick" },
+    { short: "NL", long: "Newfoundland and Labrador" },
+    { short: "NS", long: "Nova Scotia" },
+    { short: "ON", long: "Ontario" },
+    { short: "PE", long: "Prince Edward Island" },
+    { short: "QC", long: "Quebec" },
+    { short: "SK", long: "Saskatchewan" },
+    { short: "NT", long: "Northwest Territories" },
+    { short: "NU", long: "Nunavut" },
+    { short: "YT", long: "Yukon" }
   ]
   
   // email = new FormControl('', [Validators.required, Validators.email]); // This doesn't work properly
@@ -46,7 +52,7 @@ export class SignUpComponent implements OnInit {
   lName = new FormControl('', [Validators.required]);
   address1 = new FormControl('', [Validators.required]);
   province = new FormControl('', [Validators.required]);
-  postal = new FormControl('', [Validators.required]);
+  postal = new FormControl('', [Validators.required, Validators.pattern('[A-Z]{1}[\d]{1}[A-Z]')]);
   phone = new FormControl('', [Validators.required]);
 
 
@@ -64,7 +70,6 @@ export class SignUpComponent implements OnInit {
       postal: '', 
       phone: ''
     }
-
   }
 
   getErrorMessage(name: String) {
@@ -78,9 +83,24 @@ export class SignUpComponent implements OnInit {
       case 'required': return 'This field is required';
       default        : return '';
     }
-    
   }
 
-  
+  checkData() {
+    let result = true;
+    if(this.userData.uName == '' ||
+       this.userData.password == '' ||
+       this.userData.fName == '' ||
+       this.userData.lName == '' ||
+       this.userData.address1 == '' ||
+       // this.userData.address2 == '' || // (Optional)
+       this.userData.province == '' ||
+       this.userData.postal == '' ||
+       this.userData.phone == '') {
+      result = false;
+    }
+    if(this.email.hasError('pattern')) { result = false; }
+    if(this.password.hasError('pattern')) { result = false; }
 
+    return result;
+  }
 }
