@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 
+// same as API structure
 export interface UserData {
   uName: string;
   password: string;
@@ -23,6 +24,7 @@ export class SignUpComponent implements OnInit {
   registerForm: FormGroup;
   hide = true;  // to hide/show password
 
+  // List of Canadian Provinces // Should be moved to service level/api
   provinceList = [
     { short: "AB", long: "Alberta" },
     { short: "BC", long: "British Columbia" },
@@ -39,6 +41,7 @@ export class SignUpComponent implements OnInit {
     { short: "YT", long: "Yukon" }
   ]
   
+  // Package of Validators // Separated on purpose
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]);
   fName = new FormControl('', [Validators.required]);
@@ -52,6 +55,7 @@ export class SignUpComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    // Data init
     this.userData = {
       uName: '', 
       password: '',
@@ -66,6 +70,11 @@ export class SignUpComponent implements OnInit {
     
   }
 
+  /**
+   * 
+   * @param name : Validators name
+   * To get the error messages
+   */
   getErrorMessage(name: String) {
     switch(name) {
       case 'email'    : return this.email.hasError('required') ? 'This field is required'
@@ -85,6 +94,9 @@ export class SignUpComponent implements OnInit {
     }
   }
 
+  /**
+   * Check the userData is valid
+   */
   checkData() {
     let result = true;
     if(this.email.errors ||
