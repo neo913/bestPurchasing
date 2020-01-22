@@ -57,13 +57,15 @@
       <mat-error *ngIf="province.invalid">{{getErrorMessage('required')}}</mat-error>
     </mat-form-field>
     <mat-form-field class="one-third">
-      <input matInput [(ngModel)]="userData.postal" [formControl]="postal" placeholder="Postal Code" required>
-      <mat-error *ngIf="postal.invalid">{{getErrorMessage('required')}}</mat-error>
+      <mat-hint>Postal Code</mat-hint>
+      <input matInput [(ngModel)]="userData.postal" [formControl]="postal" placeholder="A1A-1A1" required>
+      <mat-error *ngIf="postal.invalid">{{getErrorMessage('postal')}}</mat-error>
     </mat-form-field>
     <mat-form-field class="one-third">
+      <mat-hint>Phone Number</mat-hint>
       <span matPrefix>+1 &nbsp;</span>
-      <input matInput [(ngModel)]="userData.phone" [formControl]="phone" placeholder="Phone Number" required [textMask]="phoneMask">
-      <mat-error *ngIf="phone.invalid">{{getErrorMessage('required')}}</mat-error>
+      <input matInput [(ngModel)]="userData.phone" [formControl]="phone" placeholder="123-123-1234" required>
+      <mat-error *ngIf="phone.invalid">{{getErrorMessage('phone')}}</mat-error>
     </mat-form-field>
   </div>
 
