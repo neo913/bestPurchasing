@@ -1,11 +1,15 @@
 <div mat-dialog-content class="modal-container">
+  <div class="text-right">
+    <button mat-icon-button color="white" mat-dialog-close>
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
   
   <h1>Join Best Purchasing!</h1>
   
-  
   <h3>Account Information</h3>
   
-  <ng-form #signUpForm="ngForm" (ngSubmit)="onSubmit(signUpForm)">
+  <ng-form #signUpForm="ngForm">
 
     <div class="accInfo">
 
@@ -48,23 +52,25 @@
       <mat-label>Select a province</mat-label>
       <mat-select [(value)]="userData.province" [formControl]="province" required>
         <mat-option>Select</mat-option>
-        <mat-option *ngFor="let province of provinceList" value="{{province.short}}">{{province.long}}</mat-option>
+        <mat-option *ngFor="let province of provinceList" value="{{province.long}}">{{province.short}} - {{province.long}}</mat-option>
       </mat-select>
       <mat-error *ngIf="province.invalid">{{getErrorMessage('required')}}</mat-error>
     </mat-form-field>
     <mat-form-field class="one-third">
-      <input matInput [(ngModel)]="userData.postal" [formControl]="postal" placeholder="Postal Code" required>
-      <mat-error *ngIf="postal.invalid">{{getErrorMessage('required')}}</mat-error>
+      <mat-hint>Postal Code</mat-hint>
+      <input matInput [(ngModel)]="userData.postal" [formControl]="postal" placeholder="A1A-1A1" required>
+      <mat-error *ngIf="postal.invalid">{{getErrorMessage('postal')}}</mat-error>
     </mat-form-field>
     <mat-form-field class="one-third">
-      <input matInput [(ngModel)]="userData.phone" [formControl]="phone" placeholder="Phone Number" required>
-      <mat-error *ngIf="phone.invalid">{{getErrorMessage('required')}}</mat-error>
+      <mat-hint>Phone Number</mat-hint>
+      <span matPrefix>+1 &nbsp;</span>
+      <input matInput [(ngModel)]="userData.phone" [formControl]="phone" placeholder="123-123-1234" required>
+      <mat-error *ngIf="phone.invalid">{{getErrorMessage('phone')}}</mat-error>
     </mat-form-field>
   </div>
 
 </div>
 <div mat-dialog-actions class="actionButtons">
   <span class="flex"></span>
-  <button mat-raised-button [mat-dialog-close]="userData" cdkFocusInitial color="warn">Sign up</button>
-  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button [mat-dialog-close]="userData" cdkFocusInitial color="warn" [disabled]="checkData() != true">Sign up</button>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 
+// same as API structure
 export interface UserData {
   uName: string;
   password: string;
@@ -21,38 +22,40 @@ export class SignUpComponent implements OnInit {
 
   userData: UserData;
   registerForm: FormGroup;
-  hide = true;  // to hide/show password  
+  hide = true;  // to hide/show password
 
+  // List of Canadian Provinces // Should be moved to service level/api
   provinceList = [
-    { short: "AB", long: "AB - Alberta" },
-    { short: "BC", long: "BC - British Columbia" },
-    { short: "MB", long: "MB - Manitoba" },
-    { short: "NB", long: "NB - New Brunswick" },
-    { short: "NL", long: "NL - Newfoundland and Labrador" },
-    { short: "NS", long: "NS - Nova Scotia" },
-    { short: "ON", long: "ON - Ontario" },
-    { short: "PE", long: "PE - Prince Edward Island" },
-    { short: "QC", long: "QC - Quebec" },
-    { short: "SK", long: "SK - Saskatchewan" },
-    { short: "NT", long: "NT - Northwest Territories" },
-    { short: "NU", long: "NU - Nunavut" },
-    { short: "YT", long: "YT - Yukon" }
+    { short: "AB", long: "Alberta" },
+    { short: "BC", long: "British Columbia" },
+    { short: "MB", long: "Manitoba" },
+    { short: "NB", long: "New Brunswick" },
+    { short: "NL", long: "Newfoundland and Labrador" },
+    { short: "NS", long: "Nova Scotia" },
+    { short: "ON", long: "Ontario" },
+    { short: "PE", long: "Prince Edward Island" },
+    { short: "QC", long: "Quebec" },
+    { short: "SK", long: "Saskatchewan" },
+    { short: "NT", long: "Northwest Territories" },
+    { short: "NU", long: "Nunavut" },
+    { short: "YT", long: "Yukon" }
   ]
   
-  // email = new FormControl('', [Validators.required, Validators.email]); // This doesn't work properly
-  email = new FormControl('', [Validators.required, Validators.pattern(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)]);
+  // Package of Validators // Separated on purpose
+  email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]);
   fName = new FormControl('', [Validators.required]);
   lName = new FormControl('', [Validators.required]);
   address1 = new FormControl('', [Validators.required]);
   province = new FormControl('', [Validators.required]);
-  postal = new FormControl('', [Validators.required]);
-  phone = new FormControl('', [Validators.required]);
+  postal = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z][0-9][a-zA-Z][ -]?[0-9][a-zA-Z][0-9]')]);
+  phone = new FormControl('', [Validators.required, Validators.pattern('[0-9]{3}[-][0-9]{3}[-][0-9]{4}')]);
 
 
   constructor() { }
 
   ngOnInit() {
+    // Data init
     this.userData = {
       uName: '', 
       password: '',
@@ -64,23 +67,49 @@ export class SignUpComponent implements OnInit {
       postal: '', 
       phone: ''
     }
-
-  }
-
-  getErrorMessage(name: String) {
-    switch(name) {
-      case 'email'   : return this.email.hasError('required') ? 'This field is required'
-                            : this.email.hasError('pattern') ? 'Not a valid email'
-                            : '';
-      case 'password': return this.password.hasError('required') ? 'This field is required'
-                            : this.password.hasError('pattern') ? 'Password must contains more than 8 numbers, letters, and special characters'
-                            : '';
-      case 'required': return 'This field is required';
-      default        : return '';
-    }
     
   }
 
-  
+  /**
+   * 
+   * @param name : Validators name
+   * To get the error messages
+   */
+  getErrorMessage(name: String) {
+    switch(name) {
+      case 'email'    : return this.email.hasError('required') ? 'This field is required'
+                              : this.email.hasError('email') ? 'Not a valid email'
+                              : '';
+      case 'password' : return this.password.hasError('required') ? 'This field is required'
+                              : this.password.hasError('pattern') ? 'Password must contains more than 8 numbers, letters, and special characters'
+                              : '';
+      case 'postal'   : return this.postal.hasError('required') ? 'This field is required'
+                              : this.postal.hasError('pattern') ? 'Postal code should be in A1A-1A1 form'
+                              : '';
+      case 'phone'    : return this.phone.hasError('required') ? 'This field is required'
+                              : this.phone.hasError('pattern') ? 'Must be numbers and - only'
+                              : '';
+      case 'required' : return 'This field is required';
+      default         : return '';
+    }
+  }
+
+  /**
+   * Check the userData is valid
+   */
+  checkData() {
+    let result = true;
+    if(this.email.errors ||
+      this.password.errors ||
+      this.fName.errors ||
+      this.lName.errors ||
+      this.address1.errors ||
+      this.province.errors ||
+      this.postal.errors ||
+      this.phone.errors) {
+      result = false;
+    }
+    return result;
+  }
 
 }

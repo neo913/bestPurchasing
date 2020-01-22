@@ -40,9 +40,7 @@ export class HeaderComponent implements OnInit {
       // console.log('The dialog was closed');
       // console.log(result);
       if(result) {
-        this.appSvc.postAPI('/createUser', result).subscribe(
-          (res) => console.log(res) 
-        );
+        this.appSvc.postAPI('/createUser', result).subscribe();
       }
     });
   }
